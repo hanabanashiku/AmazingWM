@@ -1,34 +1,35 @@
 #include "pch.h"
 #include "Settings.h"
 
+namesapce AmazingWM {
+        Settings::Settings()
+        {
+            instance_ = this;
+        }
 
-Settings::Settings()
-{
-	instance_ = this;
-}
 
+        Settings::~Settings()
+        {
+            instance_ = NULL;
+        }
 
-Settings::~Settings()
-{
-	instance_ = NULL;
-}
+        Hotkeys* Settings::getHotkeys()
+        {
+            return &hotkeys_;
+        }
 
-Hotkeys* Settings::getHotkeys()
-{
-	return &hotkeys_;
-}
+        Settings * Settings::getInstance()
+        {
+            return instance_;
+        }
 
-Settings * Settings::getInstance()
-{
-	return instance_;
-}
+        string Settings::getTerminalCommand()
+        {
+            return terminal_command_;
+        }
 
-string Settings::getTerminalCommand()
-{
-	return terminal_command_;
-}
-
-void Settings::setTerminalCommand(string cmd)
-{
-	terminal_command_ = cmd;
+        void Settings::setTerminalCommand(string cmd)
+        {
+            terminal_command_ = cmd;
+        }
 }
