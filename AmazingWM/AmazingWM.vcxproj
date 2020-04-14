@@ -23,7 +23,7 @@
     <ProjectGuid>{968A4125-4A7D-4C16-A039-7A9218858F02}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>AmazingWM</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
     <ProjectName>AmazingWM</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
