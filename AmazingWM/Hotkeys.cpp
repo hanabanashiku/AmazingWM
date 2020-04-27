@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Hotkeys.h"
-#include<Windows.h>
-#include<algorithm>
 
 using namespace std;
 

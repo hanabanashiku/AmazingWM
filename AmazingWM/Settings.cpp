@@ -86,17 +86,16 @@ namespace AmazingWM {
 					hotkeys_.setKeybind(static_cast<Keybinds>(i), keys);
 				}
 				
+				free(str);
+
 				if (errno == 0x2) {
-					free(str);
 					return false;
 				}
 			}
 			catch (exception& e) {
-				free(str);
 				return false;
 			}
 
-			free(str);
 			return true;
 		}
 

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "KeyboardManager.h"
 #include "Settings.h"
-#include<algorithm>
 
 namespace AmazingWM {
 
@@ -49,9 +48,8 @@ namespace AmazingWM {
         }
     }
 
-    vector<WORD>* KeyboardManager::getPressedKeys()
-    {
-        return &keys_down_;
+    const vector<WORD>& const KeyboardManager::getPressedKeys() {
+        return keys_down_;
     }
 
     BOOL KeyboardManager::unhook()
@@ -71,7 +69,7 @@ namespace AmazingWM {
 
         KeyboardManager::ToggleKey(wParam, pressed);
 
-        Keybinds cmd = hotkeys->existsAsKeybind(*KeyboardManager::getPressedKeys());
+        Keybinds cmd = hotkeys->existsAsKeybind(KeyboardManager::getPressedKeys());
 
         if (cmd != Keybinds::Null) {
             // todo Execute operation here

@@ -153,14 +153,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Clients.h" />
     <ClInclude Include="Hotkeys.h" />
+    <ClInclude Include="ILayout.h" />
     <ClInclude Include="KeyboardManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Screen.h" />
+    <ClInclude Include="Screens.h" />
     <ClInclude Include="Settings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmazingWM.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Clients.cpp" />
     <ClCompile Include="Hotkeys.cpp" />
     <ClCompile Include="KeyboardManager.cpp" />
     <ClCompile Include="pch.cpp">
@@ -169,6 +174,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Screens.cpp" />
     <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
