@@ -24,11 +24,12 @@ namespace AmazingWM {
 		/// <returns>A constant vector of clients.</returns>
 		const vector<Client*>& const getClients();
 
+		/// <summary>Check if the given rect is inside the screen rect.</summary>
+		/// <returns>True if at least 50% of the total area is inside of the screen space.</returns>
+		bool isInsideScreenSpace(LPRECT rect);
+
 		/// <summary>Trigger the screen to update client positions.</summary>
 		void renderPositions();
-
-		/// <summary>Set the screen as the current focused screen.</summary>
-		void focus();
 
 	private:
 		HMONITOR monitor_;

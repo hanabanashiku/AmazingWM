@@ -15,6 +15,28 @@ namespace AmazingWM {
 		/// <returns>A reference to all clients</summary>
 		const vector<Client*>& const getClients();
 
+		/// <summary>Add a new client to the window manager.</summary>
+		/// <params name="client">The client to add.</params>
+		void addClient(Client* client);
+
+		/// <summary>Remove a client from the window manager and delete the reference.</summary>
+		/// <params name="client">The client to remove.</params>
+		void removeClient(Client* client);
+
+		/// <summary>Check if a client has been added to the window manager.</summary>
+		/// <params name="client">The client to check.</params>
+		/// <returns>True if the client has been added.</returns>
+		bool exists(Client* client);
+
+		/// <summary>Set a client to have focus.</summary>
+		/// <params name="client">The client to focus.</params>
+		/// <returns>A non-zero value on success.</returns>
+		BOOL focusClient(Client* client);
+
+		/// <summary>Get the client that currently has focus.</summary>
+		/// <returns>A pointer to the focused client.</returns>
+		Client* const getFocusedClient();
+
 		/// <summary>Assign a tag to a client.</summary>
 		/// <param name="client">The client to tag.</param>
 		/// <param name="tag">The tag, 1-9, to mark on the client</param>
@@ -41,6 +63,7 @@ namespace AmazingWM {
 	private:
 		vector<Client*> clients_;
 		map<int, vector<Client*>> client_tags_;
+		Client* focused_client_;
 	};
 }
 

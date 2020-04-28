@@ -48,12 +48,13 @@ namespace AmazingWM {
 		/// <summary>Adds a client to a screen</summary>
 		/// <params name="client">The client to add.</params>
 		/// <params name="target">The new screen.</params>
-		void addClientToScreen(Client* client, Screen* target);
+		/// <params name="render">Render the changes immediately if true.</params>
+		void addClientToScreen(Client* client, Screen* target, bool render = true);
 
 		/// <summary>Remove a client from a screen</summary>
 		/// <params name="client">The client to remove.</params>
 		/// <params name="target">The screen.</params>
-		void removeClientFromScreen(Client* client, Screen* target);
+		void removeClientFromScreen(Client* client);
 
 		/// <summary>Move a client to a new screen.</summary>
 		/// <params name="client">The client to move.</params>

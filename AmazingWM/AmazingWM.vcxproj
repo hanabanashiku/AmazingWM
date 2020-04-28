@@ -157,6 +157,7 @@
     <ClInclude Include="Hotkeys.h" />
     <ClInclude Include="ILayout.h" />
     <ClInclude Include="KeyboardManager.h" />
+    <ClInclude Include="MessageHook.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Screens.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Clients.cpp" />
     <ClCompile Include="Hotkeys.cpp" />
     <ClCompile Include="KeyboardManager.cpp" />
+    <ClCompile Include="MessageHook.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

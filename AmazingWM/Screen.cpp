@@ -43,8 +43,5 @@ namespace AmazingWM {
 		copy(l.begin(), l.end(), clients);
 		layout_->render(clients, l.size(), bounds);
 	}
-	void Screen::focus() {
-		screens->setFocusedScreen(this);
-	}
 }
 

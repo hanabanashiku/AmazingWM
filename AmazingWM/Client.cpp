@@ -88,12 +88,6 @@ namespace AmazingWM {
 		return tags_;
 	}
 
-	BOOL Client::focus() {
-		pScreen_->focus();
-		return SetForegroundWindow(hWnd_);
-
-	}
-
 	BOOL Client::hide(bool render = true) {
 		auto result = SetWindowPos(hWnd_, 0, 0, 0, 0, 0, SW_HIDE);
 

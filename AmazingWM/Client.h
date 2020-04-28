@@ -57,9 +57,6 @@ namespace AmazingWM {
 		/// <returns>A constant vector of tags.</returns>
 		const vector<int>& getTags() const;
 
-		/// <summary>Moves focus to the current client.</summary>
-		/// <returns>0 on success, a non-zero value on failure.</returns>
-		BOOL focus();
 
 		/// <summary>Hide (minimize) the current client.</summary>
 		/// <param name="render">Whether to tell the screen to render the change to the window.</param>
