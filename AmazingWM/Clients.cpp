@@ -25,6 +25,13 @@ namespace AmazingWM {
 		return clients_;
 	}
 
+	const Client* Clients::getClient(HWND hWnd) {
+		auto it = find(clients_.begin(), clients_.end(), hWnd);
+		if (it != clients_.end())
+			return nullptr;
+		return *it;
+	}
+
 	void Clients::addClient(Client * client) {
 		if (client == nullptr)
 			return;
@@ -127,6 +134,15 @@ namespace AmazingWM {
 		for (auto screen : screens->getScreens()) {
 			screen->renderPositions();
 		}
+	}
+
+	void Clients::clientCreated(HWND hWnd) {
+		// we are only interested in top-level windows
+		if (hWnd != GetAncestor(hWnd, GA_ROOT))
+			return;
+
+		auto client = new Client(hWnd);
+		addClient(client);
 	}
 
 	// cycle through all the current clients.

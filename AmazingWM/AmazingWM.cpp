@@ -28,7 +28,7 @@ namespace AmazingWM {
 		hotkeys = settings->getHotkeys();
 		screens = new Screens();
 		clients = new Clients();
-		messageHook = new MessageHook();
+		messageHook = new MessageHook(instance);
 
 		atexit(lam);
     }

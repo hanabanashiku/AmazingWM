@@ -7,6 +7,7 @@ using namespace std;
 namespace AmazingWM {
 
 	/// <summary>A collection of clients that have been recognized by the window manager.</summary>
+	[event_receiver(native)]
 	class Clients {
 	public:
 		Clients();
@@ -14,6 +15,11 @@ namespace AmazingWM {
 		/// <summary>Gets all clients that have been discoverd.</summary>
 		/// <returns>A reference to all clients</summary>
 		const vector<Client*>& const getClients();
+
+		/// <summary>Get a client instance given its handle.</summary>
+		/// <params name="hWnd">The window handle.</params>
+		/// <returns>A client, or null.</returns>
+		const Client* getClient(HWND hWnd);
 
 		/// <summary>Add a new client to the window manager.</summary>
 		/// <params name="client">The client to add.</params>
@@ -59,6 +65,12 @@ namespace AmazingWM {
 		/// <param name="tag">The tag to display</param>
 		/// <exception cref="exception">If an invalid tag is given.</exception>
 		void setCurrentTag(int tag);
+
+		////// Events //////
+
+		/// <summary>An event to be fired when a new client has been created.</summary>
+		/// <params name="msg">The created data message.</params>
+		void clientCreated(HWND hWnd);
 
 	private:
 		vector<Client*> clients_;

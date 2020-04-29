@@ -79,6 +79,9 @@ namespace AmazingWM {
 		// Helper function for validating a tag parameter's value.
 		static bool validateTag(const int tag);
 
+
+		bool operator==(const HWND hWnd);
+
 	private:
 		HWND hWnd_;
 		HWND hTitlebar_;

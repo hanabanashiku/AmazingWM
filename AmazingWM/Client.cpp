@@ -170,4 +170,9 @@ namespace AmazingWM {
 			return false;
 		return true;
 	}
+
+	bool Client::operator==(const HWND hWnd) {
+		return hWnd_ == hWnd;
+	}
+
 }
