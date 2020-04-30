@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MessageHook.h"
 #include "Clients.h"
+#include "Screens.h"
 
 using namespace std;
 
@@ -19,14 +20,21 @@ namespace AmazingWM {
 
 	void MessageHook::hookEvents() {
 		extern Clients* clients;
+		extern Screens* screens;
 
 		__hook(clients->clientCreated, this, clientCreated);
+		__hook(clients->clientDestroyed, this, clientDestroyed);
+		__hook(screens->displayChanged, this, displayChanged);
+
 	}
 
 	void MessageHook::unhookEvents() {
 		extern Clients* clients;
+		extern Screens* screens;
 
 		__unhook(clients->clientCreated, this, clientCreated);
+		__unhook(clients->clientDestroyed, this, clientDestroyed);
+		__unhook(screens->displayChanged, this, displayChanged);
 	}
 
 	LRESULT CALLBACK CallWndProc(_In_ int nCode, _In_ WPARAM wParam, _In_ LPARAM lParam) {
@@ -59,6 +67,8 @@ namespace AmazingWM {
 			__raise messageHook->clientCreated(hWnd);
 			break;
 		case HSHELL_WINDOWDESTROYED:
+			auto hWnd = (HWND)wParam;
+			__raise messageHook->clientDestroyed(hWnd);
 			break;
 		}
 

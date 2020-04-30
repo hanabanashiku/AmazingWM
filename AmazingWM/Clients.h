@@ -19,7 +19,7 @@ namespace AmazingWM {
 		/// <summary>Get a client instance given its handle.</summary>
 		/// <params name="hWnd">The window handle.</params>
 		/// <returns>A client, or null.</returns>
-		const Client* getClient(HWND hWnd);
+		Client* getClient(HWND hWnd);
 
 		/// <summary>Add a new client to the window manager.</summary>
 		/// <params name="client">The client to add.</params>
@@ -69,8 +69,12 @@ namespace AmazingWM {
 		////// Events //////
 
 		/// <summary>An event to be fired when a new client has been created.</summary>
-		/// <params name="msg">The created data message.</params>
+		/// <params name="hWnd">The client's handle.</params>
 		void clientCreated(HWND hWnd);
+
+		/// <summary>An event to be fired when a client has been destroyed.</summary>
+		/// <params name="hWnd">The client's handle.</params>
+		void clientDestroyed(HWND hWnd);
 
 	private:
 		vector<Client*> clients_;

@@ -23,6 +23,12 @@ namespace AmazingWM {
 		return screens_;
 	}
 
+	Screen * Screens::getScreen(HMONITOR hMonitor) {
+		auto screen = find(screens_.begin(), screens_.end(), hMonitor);
+
+		return (screen != screens_.end()) ? *screen : nullptr;
+	}
+
 	const Screen * const Screens::getFocusedScreen() {
 		return focused_screen_;
 	}
@@ -132,6 +138,22 @@ namespace AmazingWM {
 		addClientToScreen(client, target);
 	}
 
+	void Screens::displayChanged() {
+		vector<Screen*>* discovered_screens = new vector<Screen*>();
+
+		// Enumerate all of the screens to look for changes
+		EnumDisplayMonitors(NULL, NULL, MonitorChangedEnumProc, reinterpret_cast<LPARAM>(discovered_screens));
+
+		// look for screens to remove
+		for (auto screen : screens_) {
+			if (find(discovered_screens->begin(), discovered_screens->end(), screen) == discovered_screens->end()) {
+				removeScreen(screen);
+			}
+		}
+
+		delete discovered_screens;
+	}
+
 	// Used to find monitors one by one.
 	BOOL MonitorEnumProc(
 		HMONITOR hMonitor,
@@ -143,6 +165,39 @@ namespace AmazingWM {
 		Screen* screen = new Screen(hMonitor, *lpRect);
 		screens->addScreen(screen);
 		return TRUE; // continue enumerating
+	}
+
+	// Used to find monitors to add or update.
+	BOOL MonitorChangedEnumProc(
+		HMONITOR hMonitor,
+		HDC hdc,
+		LPRECT lpRect,
+		LPARAM lParam) {
+		
+		extern Screens* screens;
+		vector<Screen*>* discovered_screens = reinterpret_cast<vector<Screen*>*>(lParam);
+
+		auto screen = screens->getScreen(hMonitor);
+		auto rect = *Screen::getCoordinates(hMonitor);
+
+		// it's a new screen, add it.
+		if (screen == nullptr) {
+			screen = new Screen(hMonitor, rect);
+			screens->addScreen(screen);
+		}
+		// maybe the size changed?
+		else if(!rectEquals(&rect, &screen->getCoordinates())) {
+			screen->sizeChangedEvent(rect);
+		}
+
+		discovered_screens->push_back(screen);
+	}
+
+	static bool rectEquals(LPRECT a, LPRECT b) {
+		return a->top == b->top &&
+			a->right == b->right &&
+			a->bottom == b->bottom &&
+			a->left == b->left;
 	}
 }
 

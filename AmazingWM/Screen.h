@@ -17,8 +17,11 @@ namespace AmazingWM {
 		HMONITOR getHandle();
 
 		/// <summary> Get the location of the screen.</summary>
-		/// <returns>The virtual coordinates of the screen.</summary>
+		/// <returns>The virtual coordinates of the screen.</returns>
 		RECT getCoordinates();
+
+		static LPRECT getCoordinates(HMONITOR monitor);
+
 
 		/// <summary>Get the clients that belong to the screen.</summary>
 		/// <returns>A constant vector of clients.</returns>
@@ -30,6 +33,8 @@ namespace AmazingWM {
 
 		/// <summary>Trigger the screen to update client positions.</summary>
 		void renderPositions();
+
+		bool operator=(HMONITOR hMonitor);
 
 	private:
 		HMONITOR monitor_;

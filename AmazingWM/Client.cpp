@@ -89,7 +89,7 @@ namespace AmazingWM {
 	}
 
 	BOOL Client::hide(bool render = true) {
-		auto result = SetWindowPos(hWnd_, 0, 0, 0, 0, 0, SW_HIDE);
+		auto result = ShowWindow(hWnd_, SW_FORCEMINIMIZE);
 
 		if (result != 0 && render)
 			pScreen_->renderPositions();

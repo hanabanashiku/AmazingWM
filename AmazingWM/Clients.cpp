@@ -25,7 +25,7 @@ namespace AmazingWM {
 		return clients_;
 	}
 
-	const Client* Clients::getClient(HWND hWnd) {
+	Client* Clients::getClient(HWND hWnd) {
 		auto it = find(clients_.begin(), clients_.end(), hWnd);
 		if (it != clients_.end())
 			return nullptr;
@@ -143,6 +143,16 @@ namespace AmazingWM {
 
 		auto client = new Client(hWnd);
 		addClient(client);
+	}
+
+	void Clients::clientDestroyed(HWND hWnd) {
+		auto client = getClient(hWnd);
+
+		// client dosn't exist
+		if (client == nullptr)
+			return;
+
+		removeClient(client);
 	}
 
 	// cycle through all the current clients.

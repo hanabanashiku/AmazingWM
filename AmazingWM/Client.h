@@ -60,7 +60,7 @@ namespace AmazingWM {
 
 		/// <summary>Hide (minimize) the current client.</summary>
 		/// <param name="render">Whether to tell the screen to render the change to the window.</param>
-		/// <returns>0 on success, a non-zero value on failure.</returns>
+		/// <returns>If the client was previously visible, the return value is nonzero. Otherwise, the return value is zero.</returns>
 		BOOL hide(bool render = true);
 
 		/// <summary>Restore the current client.</summary>

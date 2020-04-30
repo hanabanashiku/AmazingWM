@@ -19,6 +19,11 @@ namespace AmazingWM {
 		/// <returns>A constant vector of screen pointers.</returns>
 		const vector<Screen*>& const getScreens();
 
+		/// <summary>Get the screen that uses the given handle.</summary>
+		/// <params name="hMonitor">The monitor handle.</params>
+		/// <returns>A reference to the screen, or null</returns>
+		Screen* getScreen(HMONITOR hMonitor);
+
 		/// <summary>Get the screen that currently has focus.</summary>
 		/// <returns>A pointer to the screen that has focus.</returns>
 		const Screen* const getFocusedScreen();
@@ -60,6 +65,8 @@ namespace AmazingWM {
 		/// <params name="client">The client to move.</params>
 		/// <params name="target">The new screen.</params>
 		void moveClient(Client* client, Screen* target);
+
+		void displayChanged();
 
 	private:
 		map<Screen*, vector<Client*>> map_;
